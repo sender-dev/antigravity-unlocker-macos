@@ -1,0 +1,31 @@
+# Сборка Rust: байты, артефакты, кэш cargo (Windows, Linux и macOS-таргеты).
+/target/
+/target-linux/
+/release/
+
+# Транспортные архивы релизов: собираются заново, в репозитории не нужны.
+*.tar.gz
+*.zip
+
+# Приватные данные маршрутов. `build.rs` подключает их только при наличии этих
+# файлов (relay ещё и AG_WITH_RELAY=1); публичная сборка компилируется как
+# relay=false exits=false group=false. Никогда не должны попасть в репозиторий.
+/src/relay.rs
+/src/exits.rs
+/.relay_key
+/.exits
+
+# Пишется owner-сборкой (build_rust.py, is_owner): генератор лицензионных ключей
+# для текущего релиза. В публичном клоне его нет и быть не должно.
+/dist_keygen.py
+
+# Отчёты и логи сборки, которые пишутся в рабочую папку.
+/messages.json
+/build.log
+
+# macOS: служебные файлы Finder.
+.DS_Store
+
+# Windows: служебные файлы проводника.
+Thumbs.db
+desktop.ini
